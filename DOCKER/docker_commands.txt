@@ -1,0 +1,7 @@
+sudo docker build -t myimage .
+sudo docker images 
+sudo docker run <image-name>
+sudo docker ps
+sudo docker kill <container-id>
+sudo docker exec -it <container_id_or_name> bash
+
