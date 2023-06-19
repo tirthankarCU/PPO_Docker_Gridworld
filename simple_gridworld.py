@@ -22,6 +22,7 @@ class SimpleGridWorld:
         self.mx_iter=30
         self.obs={'agent':src,'destination':dest,'obstacle':obstacles}
         self.mode=mode 
+        self._ip_shape = len(src) + len(dest) + len(obstacles)*2
     def __get_obs(self):
         self.obs['agent']=self.curr
         part1=[self.curr[0],self.curr[1],self.dest[0],self.dest[1]]
@@ -52,11 +53,22 @@ class SimpleGridWorld:
         self.curr[0],self.curr[1]=i_child,j_child
         self.grid[self.curr[0]][self.curr[1]]=1
         return self.__get_obs(),-1,False
+    @property
+    def ip_shape(self):
+        return self._ip_shape 
+    @property
+    def op_shape(self):
+        # 4 actions are possible in this evironment.
+        return 4
+    @property
+    def threshold_reward(self):
+        # The ideal reward for this static environment is -7
+        return -8
 
 if __name__=='__main__':
     env=SimpleGridWorld()
+    print(env.ip_shape)
     actions = [1,2,2,2,1,1,1,3]
-    env.printGrid()
     for action in actions:
         state,reward,termination = env.action_step(action)
         print(action,reward)

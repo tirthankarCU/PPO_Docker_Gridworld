@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y git
 
 RUN rm -rf ~/NLP_RL_Docker_Version
 
-RUN git clone -b docker-branch https://github.com/tirthankarCU/PPO_Docker_Gridworld.git
+RUN git clone https://github.com/tirthankarCU/PPO_Docker_Gridworld.git
 
 # changing mount point
 WORKDIR /PPO_Docker_Gridworld
