@@ -1,5 +1,5 @@
 import numpy as np
-
+import math
 '''
 0 - move up
 1 - move down
@@ -30,7 +30,7 @@ class SimpleGridWorld:
         rectified=np.array(part1+part2)/self.size
         return rectified
     def reset(self,mode_r='not_human'):
-        self.__init__(size=5,src=[0,1],dest=[4,3],obstacles=[[2,0],[2,1],[2,2],[2,3]],mode=mode_r)
+        self.__init__(size=5,src=[0,1],dest=[0,3],obstacles=[[2,0],[2,1],[2,2],[2,3]],mode=mode_r)
         return self.__get_obs()
     def printGrid(self):
         for row in self.grid:
@@ -46,7 +46,7 @@ class SimpleGridWorld:
         if self.step>=self.mx_iter:
             return self.__get_obs(),-1,True 
         if i_child==self.obs['destination'][0] and j_child==self.obs['destination'][1]:
-            return self.__get_obs(),0,True 
+            return self.__get_obs(),10,True 
         if i_child<0 or j_child<0 or i_child>=self.size or j_child>=self.size or self.grid[i_child][j_child]==3:
             return self.__get_obs(),-1,False 
         self.grid[self.curr[0]][self.curr[1]]=0
@@ -63,7 +63,7 @@ class SimpleGridWorld:
     @property
     def threshold_reward(self):
         # The ideal reward for this static environment is -7
-        return -8
+        return math.inf
 
 if __name__=='__main__':
     env=SimpleGridWorld()
