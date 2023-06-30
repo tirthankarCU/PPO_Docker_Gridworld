@@ -30,7 +30,7 @@ class SimpleGridWorld:
         rectified=np.array(part1+part2)/self.size
         return rectified
     def reset(self,mode_r='not_human'):
-        self.__init__(size=5,src=[0,1],dest=[0,3],obstacles=[[2,0],[2,1],[2,2],[2,3]],mode=mode_r)
+        self.__init__(size=5,src=[0,1],dest=[4,3],obstacles=[[2,0],[2,1],[2,2],[2,3]],mode=mode_r)
         return self.__get_obs()
     def printGrid(self):
         for row in self.grid:
